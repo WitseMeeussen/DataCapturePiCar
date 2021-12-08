@@ -38,7 +38,7 @@ def captureData():
 
 	
 	_, image = camera.read()        
-	cv2.imwrite("%s_%03d_%03d.png" % ( count, ControlerData['speed'], ControlerData['direction']), image)
+	cv2.imwrite(folder+"/%s_%03d_%03d.png" % ( count, ControlerData['speed'], ControlerData['direction']), image)
 	count += 1
     
 
