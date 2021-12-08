@@ -20,13 +20,16 @@ import os
 from datetime import datetime
 
 
-folder = '~/Data/' + str(datetime.now())
+folder = '/Data/' + str(datetime.now())
+if not os.path.isdir(folder):
+	os.mkdir(folder)
+	print('made dir')
 
 def captureData():
+	print('capture')
 	if(ControlerData['drive']==0): 
 		return
-	if not os.path.isdir(folder): 
-		os.mkdir(folder)
+
 	camera = cv2.VideoCapture(-1)
 	camera.set(3, 640)
 	camera.set(4, 480)
