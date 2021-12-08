@@ -27,7 +27,7 @@ if not os.path.isdir(folder):
 count = 0
 def captureData():
 	global count
-	print('capture')
+	
 	if(ControlerData['drive']==0): 
 		return
 
@@ -38,7 +38,8 @@ def captureData():
 
 	
 	_, image = camera.read()    
-	cv2.imwrite(folder+"/test%s.png" %(count), image)    
+	print(folder+"/test%s.png" %(count))
+	print(cv2.imwrite(folder+"/test%s.png" %(count), image))
 	#cv2.imwrite(folder+"/%s_%03d_%03d.png" % ( count, ControlerData['speed'], ControlerData['direction']), image)
 	count += 1
     
