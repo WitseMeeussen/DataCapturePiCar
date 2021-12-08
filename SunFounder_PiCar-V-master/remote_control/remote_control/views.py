@@ -20,7 +20,7 @@ import os
 from datetime import datetime
 
 
-folder = '/root/Data/' + str(datetime.now())
+folder = '~/Data/' + str(datetime.now())
 
 def captureData():
 	if(ControlerData['drive']==0): 
