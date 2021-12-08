@@ -20,12 +20,13 @@ import os
 from datetime import datetime
 
 
-folder = '/Data/' + 'test'
+folder = '/home/pi/Data/' + 'test2'
 if not os.path.isdir(folder):
 	os.mkdir(folder)
 	print('made dir')
-
+count = 0
 def captureData():
+	global count
 	print('capture')
 	if(ControlerData['drive']==0): 
 		return
@@ -37,8 +38,8 @@ def captureData():
 
 	
 	_, image = camera.read()        
-	cv2.imwrite("%s_%03d_%03d.png" % ( str(datetime.hour)+str(datetime.minute), ControlerData['speed'], ControlerData['direction']), image)
-        
+	cv2.imwrite("%s_%03d_%03d.png" % ( count, ControlerData['speed'], ControlerData['direction']), image)
+	count += 1
     
 
 
