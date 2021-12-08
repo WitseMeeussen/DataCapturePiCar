@@ -20,7 +20,7 @@ import os
 from datetime import datetime
 
 
-folder = '/Data/' + str(datetime.now())
+folder = '/Data/' + 'test'
 if not os.path.isdir(folder):
 	os.mkdir(folder)
 	print('made dir')
