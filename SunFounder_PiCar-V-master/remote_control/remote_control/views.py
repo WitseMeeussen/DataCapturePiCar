@@ -20,7 +20,7 @@ import os
 from datetime import datetime
 
 
-folder = '/root/Data/' + datetime.now()
+folder = '/root/Data/' + str(datetime.now())
 
 def captureData():
 	if(ControlerData['drive']==0): 
@@ -34,7 +34,7 @@ def captureData():
 
 	
 	_, image = camera.read()        
-	cv2.imwrite("%s_%03d_%03d.png" % ( datetime.hour+datetime.minute, ControlerData['speed'], ControlerData['direction']), image)
+	cv2.imwrite("%s_%03d_%03d.png" % ( str(datetime.hour)+str(datetime.minute), ControlerData['speed'], ControlerData['direction']), image)
         
     
 
