@@ -19,14 +19,18 @@ import cv2
 import os
 from datetime import datetime
 
-
+ControlerData = {
+		'speed':1,
+		'drive':0,
+		'direction':0
+}
 folder = '/home/pi/Data/' + 'test2'
 if not os.path.isdir(folder):
 	os.mkdir(folder)
 	print('made dir')
 count = 0
 def captureData():
-	global count
+	global count, ControlerData
 	
 	if(ControlerData['drive']==0):
 		return
@@ -57,11 +61,7 @@ fw.ready()
 SPEED = 60
 bw_status = 0
 
-ControlerData = {
-		'speed':1,
-		'drive':0,
-		'direction':0
-}
+
 
 print(stream.start())
 
