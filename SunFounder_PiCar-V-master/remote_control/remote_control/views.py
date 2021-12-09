@@ -31,9 +31,9 @@ if not os.path.isdir(folder):
 count = 0
 def captureData():
 	global count, ControlerData
-	
-	if(ControlerData['drive']==0):
-		return
+	print(ControlerData)
+	# if(ControlerData['drive']==0):
+	# 	return
 
 	camera = cv2.VideoCapture(-1)
 	camera.set(3, 640)
