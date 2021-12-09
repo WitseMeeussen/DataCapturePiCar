@@ -28,7 +28,7 @@ count = 0
 def captureData():
 	global count
 	
-	if(ControlerData['drive']==0): 
+	if(ControlerData['drive']==0):
 		return
 
 	camera = cv2.VideoCapture(-1)
