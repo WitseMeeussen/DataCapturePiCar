@@ -53,8 +53,8 @@ picar.setup()
 db_file = "/home/pi/SunFounder_PiCar-V/remote_control/remote_control/driver/config"
 fw = front_wheels.Front_Wheels(debug=False, db=db_file)
 bw = back_wheels.Back_Wheels(debug=False, db=db_file)
-cam = camera.Camera(debug=False, db=db_file)
-cam.ready()
+#cam = camera.Camera(debug=False, db=db_file)
+#cam.ready()
 bw.ready()
 fw.ready()
  
@@ -70,11 +70,7 @@ def home(request):
 
 def run(request):
 	### this contains al the controller input
-	ControlerData = {
-		'speed':0,
-		'drive':0,
-		'direction':0
-	}
+	global ControlerData
 	global SPEED, bw_status
 	debug = ''
 	if 'action' in request.GET:
@@ -116,17 +112,18 @@ def run(request):
 			print("turn %s" % action)
 			fw.turn(int(action.split(':')[1]))
 		
-		# ================ Camera =================
-		elif action == 'camready':
-			cam.ready()
-		elif action == "camleft":
-			cam.turn_left(40)
-		elif action == 'camright':
-			cam.turn_right(40)
-		elif action == 'camup':
-			cam.turn_up(20)
-		elif action == 'camdown':
-			cam.turn_down(20)	
+		
+		# # ================ Camera =================
+		# elif action == 'camready':
+		# 	cam.ready()
+		# elif action == "camleft":
+		# 	cam.turn_left(40)
+		# elif action == 'camright':
+		# 	cam.turn_right(40)
+		# elif action == 'camup':
+		# 	cam.turn_up(20)
+		# elif action == 'camdown':
+		# 	cam.turn_down(20)	
 	if 'speed' in request.GET:
 		speed = int(request.GET['speed'])
 		if speed < 0:
@@ -144,28 +141,28 @@ def run(request):
 def cali(request):
 	if 'action' in request.GET:
 		action = request.GET['action']
-		# ========== Camera calibration =========
-		if action == 'camcali':
-			print('"%s" command received' % action)
-			cam.calibration()
-		elif action == 'camcaliup':
-			print('"%s" command received' % action)
-			cam.cali_up()
-		elif action == 'camcalidown':
-			print('"%s" command received' % action)
-			cam.cali_down()
-		elif action == 'camcalileft':
-			print('"%s" command received' % action)
-			cam.cali_left()
-		elif action == 'camcaliright':
-			print('"%s" command received' % action)
-			cam.cali_right()
-		elif action == 'camcaliok':
-			print('"%s" command received' % action)
-			cam.cali_ok()
+		# # ========== Camera calibration =========
+		# if action == 'camcali':
+		# 	print('"%s" command received' % action)
+		# 	cam.calibration()
+		# elif action == 'camcaliup':
+		# 	print('"%s" command received' % action)
+		# 	cam.cali_up()
+		# elif action == 'camcalidown':
+		# 	print('"%s" command received' % action)
+		# 	cam.cali_down()
+		# elif action == 'camcalileft':
+		# 	print('"%s" command received' % action)
+		# 	cam.cali_left()
+		# elif action == 'camcaliright':
+		# 	print('"%s" command received' % action)
+		# 	cam.cali_right()
+		# elif action == 'camcaliok':
+		# 	print('"%s" command received' % action)
+		# 	cam.cali_ok()
 
 		# ========= Front wheel cali ===========
-		elif action == 'fwcali':
+		if action == 'fwcali':
 			print('"%s" command received' % action)
 			fw.calibration()
 		elif action == 'fwcalileft':
