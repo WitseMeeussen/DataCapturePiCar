@@ -135,8 +135,10 @@ def run(request):
 			bw.speed = SPEED
 		debug = "speed =", speed
 	captureData()
-	host = stream.get_host().decode('utf-8').split(' ')[0]
-	return render_to_response("run.html", {'host': host})
+	# # streaming
+	#host = stream.get_host().decode('utf-8').split(' ')[0]
+	
+	return render_to_response("run.html")
 
 def cali(request):
 	if 'action' in request.GET:

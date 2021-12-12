@@ -36,7 +36,7 @@
         #div_appbar {
             width: 100%;
         }
-        
+        /*
         #div_streamer {
             background: url(http://{{ host }}:8080/?action=stream) no-repeat center center;
             background-size: auto 90%;
@@ -44,6 +44,7 @@
             height: 100%;
             position: relative;
         }
+        */
         
         #div_control {
             width: 100%;
@@ -100,11 +101,12 @@
 
         function set_speed(value) {
             var xmlHttp = new XMLHttpRequest();
-            var protocol = window.location.protocol;
-            var host = window.location.host;
             var pathname = window.location.pathname;
+            // // // streaming
+            var host = window.location.host;
+            var protocol = window.location.protocol;
             url = protocol + "//" + host + pathname + "?speed" + "=" + value;
-            //document.getElementById("debug").innerHTML=url;
+            document.getElementById("debug").innerHTML = url;
             xmlHttp.open("GET", url, false);
             xmlHttp.send(null);
             return xmlHttp.responseText;
