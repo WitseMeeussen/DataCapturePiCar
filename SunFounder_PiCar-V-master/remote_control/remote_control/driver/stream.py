@@ -25,20 +25,23 @@ OUTPUT_PATH = "/usr/local/lib/output_http.so -w /usr/local/www"
 stream_cmd = '%s -i "%s" -o "%s" &' % (MJPG_STREAMER_PATH, INPUT_PATH, OUTPUT_PATH)
 
 def run_command(cmd):
-	with tempfile.TemporaryFile() as f:
-		subprocess.call(cmd, shell=True, stdout=f, stderr=f)
-		f.seek(0)
-		output = f.read()
-	return output
+	# with tempfile.TemporaryFile() as f:
+	# 	subprocess.call(cmd, shell=True, stdout=f, stderr=f)
+	# 	f.seek(0)
+	# 	output = f.read()
+	# return output
+	return
 
 def start():
-	files = os.listdir('/dev')
-	if 'video0' in files:
-		run_command(stream_cmd)
-	else:
-		raise IOError("Camera is not connected correctly")
+	# files = os.listdir('/dev')
+	# if 'video0' in files:
+	# 	run_command(stream_cmd)
+	# else:
+	# 	raise IOError("Camera is not connected correctly")
+	return
 
 def start():
+	return
 	files = os.listdir('/dev')
 	print(stream_cmd)
 	video_files = [f for f in files if 'video' in f]
@@ -47,9 +50,11 @@ def start():
 	run_command(stream_cmd)
 
 def get_host():
+	return
 	return run_command('hostname -I')
 
 def stop():
+	return
 	pid = run_command('ps -A | grep mjpg_streamer | grep -v "grep" | head -n 1')
 	if pid == '':
 		return False
@@ -58,12 +63,15 @@ def stop():
 		return True
 
 def restart():
+	return
 	stop()
 	start()
 	return True
 
 def test():
+	return
 	run_command(stream_cmd[:-2])
 
 if __name__ == "__main__":
+	
 	test()
