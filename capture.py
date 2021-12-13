@@ -41,6 +41,7 @@ bw = back_wheels.Back_Wheels(debug=False, db=db_file)
 #cam.ready()
 bw.ready()
 fw.ready()
+bw.speed = 60
  
 SPEED = 60
 bw_status = 0
@@ -52,12 +53,15 @@ while True:
     if is_pressed("up"):
         speed = 1
         bw.forward()
+        bw.speed = SPEED
     elif is_pressed("down"):
         speed = -1
         bw.backward()
+        bw.speed = SPEED/2
     else:
         speed = 0
         bw.stop()
+        bw.speed = 0
     if is_pressed("left") and is_pressed("right"):
         dir = 0
         fw.turn_straight()
