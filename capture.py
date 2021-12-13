@@ -7,8 +7,8 @@ from datetime import datetime
 from keyboard import on_press_key, read_key,is_pressed, wait
 
 
-
-folder = '/home/pi/DataCapturePiCar/Data/' + 'test1'
+a = os.listdir('/home/pi/DataCapturePiCar/Data/').count()+1
+folder = '/home/pi/DataCapturePiCar/Data/' + 'test' + str(a)
 if not os.path.isdir(folder):
 	os.mkdir(folder)
 	print('made dir')
@@ -20,18 +20,14 @@ camera = cv2.VideoCapture(-1)
 camera.set(3, 640)
 camera.set(4, 480)
 
+waitCount =0
+
 def captureData():
 	global count,dir,speed
-	# if(ControlerData['drive']==0):
-	# 	return
 
-	
-
-
-	
 	_, image = camera.read()    
 	print(folder+"/test%s.png" %(count))
-	print(cv2.imwrite(folder+"/test%s.png" %(count), image))
+	print(cv2.imwrite(folder+"/%s_%s.png" %(count,dir), image))
 	#cv2.imwrite(folder+"/%s_%03d_%03d.png" % ( count, ControlerData['speed'], ControlerData['direction']), image)
 	count += 1
     
@@ -77,5 +73,8 @@ while True:
     if is_pressed("esc") or is_pressed("q"):
         break 
     print("speed:"+ str(speed) + "|dir:"+str(dir))
-    captureData()
-
+    if waitCount >100 and speed == 1:
+        waitCount = 0
+        captureData()
+    else:
+        waitCount +=1
