@@ -54,6 +54,7 @@ def  cangeDir(x):
         changedDir = False
     else:
         changedDir = True
+    dir = x
 
 
 while True:
@@ -86,8 +87,6 @@ while True:
     print("speed:"+ str(speed) + "|dir:"+str(dir))
     if (waitCount >10 or changedDir) and speed == 1:
         waitCount = 0
-        captureData()
-    elif changedDir and speed == 1:
         captureData()
     else:
         waitCount +=1
