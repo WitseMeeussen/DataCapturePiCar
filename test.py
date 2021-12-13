@@ -5,6 +5,10 @@ dir = 0
 speed = 0
 a = len(os.listdir('./Data/'))+1
 print(a)
+
+
+if (False or True) and True:
+    print('jeet')
 # while True:
 #     if is_pressed("up"):
 #         speed =1

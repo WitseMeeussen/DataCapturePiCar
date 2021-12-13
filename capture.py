@@ -1,3 +1,4 @@
+from enum import Flag
 from picar import back_wheels, front_wheels
 import picar
 import cv2
@@ -15,6 +16,7 @@ if not os.path.isdir(folder):
 
 count = 0
 dir = 0
+changedDir = False
 speed = 0
 camera = cv2.VideoCapture(-1)
 camera.set(3, 640)
@@ -46,7 +48,12 @@ bw.speed = 60
 SPEED = 60
 bw_status = 0
 
-
+def  cangeDir(x):
+    global dir, changedDir
+    if(dir == x):
+        changedDir = False
+    else:
+        changedDir = True
 
 
 while True:
@@ -63,22 +70,24 @@ while True:
         bw.stop()
         bw.speed = 0
     if is_pressed("left") and is_pressed("right"):
-        dir = 0
+        cangeDir(0)
         fw.turn_straight()
     elif is_pressed("right"):
-        dir = 1
+        cangeDir(1)
         fw.turn_right()
     elif is_pressed("left"):
-        dir = -1
+        cangeDir(-1)
         fw.turn_left()
     else:
-        dir = 0
+        cangeDir(0)
         fw.turn_straight()
     if is_pressed("esc") or is_pressed("q"):
         break 
     print("speed:"+ str(speed) + "|dir:"+str(dir))
-    if waitCount >100 and speed == 1:
+    if (waitCount >10 or changedDir) and speed == 1:
         waitCount = 0
+        captureData()
+    elif changedDir and speed == 1:
         captureData()
     else:
         waitCount +=1
