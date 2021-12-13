@@ -8,7 +8,7 @@ from keyboard import on_press_key, read_key,is_pressed, wait
 
 
 
-folder = '/home/pi/DataCapture/Data/' + 'test1'
+folder = '/home/pi/DataCapturePiCar/Data/' + 'test1'
 if not os.path.isdir(folder):
 	os.mkdir(folder)
 	print('made dir')
