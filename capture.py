@@ -7,7 +7,7 @@ from datetime import datetime
 from keyboard import on_press_key, read_key,is_pressed, wait
 
 
-a = os.listdir('/home/pi/DataCapturePiCar/Data/').count()+1
+a = len(os.listdir('/home/pi/DataCapturePiCar/Data/'))+1
 folder = '/home/pi/DataCapturePiCar/Data/' + 'test' + str(a)
 if not os.path.isdir(folder):
 	os.mkdir(folder)
