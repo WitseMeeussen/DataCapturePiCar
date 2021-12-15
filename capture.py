@@ -1,4 +1,4 @@
-from enum import Flag
+
 from picar import back_wheels, front_wheels
 import picar
 import cv2
@@ -8,8 +8,8 @@ from datetime import datetime
 from keyboard import on_press_key, read_key,is_pressed, wait
 
 
-a = len(os.listdir('/home/pi/DataCapturePiCar/Data/'))+1
-folder = '/home/pi/DataCapturePiCar/Data/' + 'test' + str(a)
+folderNr = len(os.listdir('/home/pi/DataCapturePiCar/Data/'))+1
+folder = '/home/pi/DataCapturePiCar/Data/' + 'capture' + str(folderNr)
 if not os.path.isdir(folder):
 	os.mkdir(folder)
 	print('made dir')
@@ -26,10 +26,9 @@ waitCount =0
 
 def captureData():
 	global count,dir,speed
-
+    
 	_, image = camera.read()    
-	print(folder+"/test%s.png" %(count))
-	print(cv2.imwrite(folder+"/%s_%s.png" %(count,dir), image))
+	print(cv2.imwrite(folder+"/nr%s_%s_dir_%s.png" %(folderNr,count,dir), image))
 	#cv2.imwrite(folder+"/%s_%03d_%03d.png" % ( count, ControlerData['speed'], ControlerData['direction']), image)
 	count += 1
     
@@ -85,7 +84,7 @@ while True:
     if is_pressed("esc") or is_pressed("q"):
         break 
     print("speed:"+ str(speed) + "|dir:"+str(dir))
-    if (waitCount >10 or changedDir) and speed == 1:
+    if (waitCount >4 or changedDir) and speed == 1:
         waitCount = 0
         captureData()
     else:
