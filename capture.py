@@ -89,3 +89,7 @@ while True:
         captureData()
     else:
         waitCount +=1
+    if is_pressed("a"):
+        fw.cali_left()
+    if is_pressed("z"):
+        fw.cali_right()
