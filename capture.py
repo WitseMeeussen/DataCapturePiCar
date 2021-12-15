@@ -89,7 +89,14 @@ while True:
         captureData()
     else:
         waitCount +=1
+
+
+while True:
+    fw.calibration()
     if is_pressed("a"):
         fw.cali_left()
     if is_pressed("z"):
+        print(1)
         fw.cali_right()
+    if is_pressed("enter"):
+        fw.cali_ok()
