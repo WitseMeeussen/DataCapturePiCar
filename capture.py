@@ -42,9 +42,9 @@ bw = back_wheels.Back_Wheels(debug=False, db=db_file)
 #cam.ready()
 bw.ready()
 fw.ready()
-bw.speed = 60
+bw.speed = 30
  
-SPEED = 60
+SPEED = 30
 bw_status = 0
 
 def  cangeDir(x):
@@ -64,7 +64,7 @@ while True:
     elif is_pressed("down"):
         speed = -1
         bw.backward()
-        bw.speed = SPEED/2
+        bw.speed = SPEED
     else:
         speed = 0
         bw.stop()
@@ -89,14 +89,3 @@ while True:
         captureData()
     else:
         waitCount +=1
-
-
-while True:
-    fw.calibration()
-    if is_pressed("a"):
-        fw.cali_left()
-    if is_pressed("z"):
-        print(1)
-        fw.cali_right()
-    if is_pressed("enter"):
-        fw.cali_ok()
